@@ -1,10 +1,10 @@
 .topbar{
     width: 100%;
-    background-color: #333;
+    /*background-color: #333;*/
     columns: white;
-    padding: 10px;
+    /*padding: 10px;*/
     text-align: center;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);*/
 }
 
 .topbar h1{
