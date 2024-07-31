@@ -20,7 +20,9 @@ const ContactPage: React.FC = () => {
   return (
     <Box
       sx={{
-        position: 'relative',
+        position: 'absolute',  // Changed from 'relative' to 'absolute'
+        top: 0,
+        left: 0,
         width: '100vw',
         height: '100vh',
         overflow: 'hidden',
@@ -31,14 +33,14 @@ const ContactPage: React.FC = () => {
     >
       <Container
         sx={{
-          position: 'relative',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: 'white',
+            position: 'relative',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            textAlign: 'center',
+            color: 'white',
         }}
       >
         <Typography variant="h3" component="h1" gutterBottom>
