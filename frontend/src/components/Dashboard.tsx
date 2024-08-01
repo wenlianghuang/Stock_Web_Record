@@ -22,11 +22,9 @@ export default Dashboard;
 */
 
 
-import { AppBar, Box, CssBaseline, Drawer, Toolbar } from "@mui/material";
+import { AppBar, Box, CssBaseline, Toolbar } from "@mui/material";
 import React from "react";
-import Sidebar from "./Sidebar";
-import Topbar from "./Topbar";
-
+import Topbar2 from "./Topbar2";
 const drawerWidth = 240;
 
 const Dashboard: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
@@ -35,19 +33,10 @@ const Dashboard: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          <Topbar />
+          <Topbar2 />
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box',top:64 },
-        }}
-      >
-        <Sidebar />
-      </Drawer>
+      
       <Box
         component="main"
         sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3, marginLeft: `${drawerWidth}px`,marginTop:'64px' }}

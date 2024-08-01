@@ -73,21 +73,13 @@ const HomePage: React.FC = () => {
         backgroundPosition: 'center',
       }}
     >
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional: Dark overlay for better text visibility
-        }}
-      />
+      
       <Container
         sx={{
           position: 'relative',
           zIndex: 1,
           height: '100%',
+          width: '100%',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
