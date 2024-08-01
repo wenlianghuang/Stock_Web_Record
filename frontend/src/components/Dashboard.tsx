@@ -24,7 +24,7 @@ export default Dashboard;
 
 import { AppBar, Box, CssBaseline, Toolbar } from "@mui/material";
 import React from "react";
-import Topbar2 from "./Topbar2";
+import Topbar from "./Topbar";
 const drawerWidth = 240;
 
 const Dashboard: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
@@ -33,7 +33,7 @@ const Dashboard: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          <Topbar2 />
+          <Topbar />
         </Toolbar>
       </AppBar>
       

@@ -4,6 +4,7 @@ import Dashboard from './components/Dashboard';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import ScrollImagePage from './pages/ContinuePage';
 import './styles/App.css';
 
 const App: React.FC = () => {
@@ -14,6 +15,7 @@ const App: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/page2" element={<ScrollImagePage />} />
         </Routes>
       </Dashboard>
     </Router>
