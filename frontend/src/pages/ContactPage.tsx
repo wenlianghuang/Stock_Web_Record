@@ -4,10 +4,9 @@ import image from "../assets/images/Image1.jpg";
 import "../styles/SupportedIcon.css"
 const ContactPage: React.FC = () => {
     const [useStockState,setStockState] = useState(false);
-    const [useGreenorRed,setGreenorRed] = useState('green');
     const handleToggle = () => {
         setStockState(!useStockState);
-        setGreenorRed('red');
+        
     };
     return (
         <Box
@@ -78,12 +77,12 @@ const ContactPage: React.FC = () => {
                         </Typography>
                         <Typography
                             sx={{
-                                color: 'green', 
+                                color: useStockState ? 'red' : 'green', 
                                 display: 'inline',
                                 paddingLeft: '30px',
                             }}
                         >
-                            <Box className="handstand_traiangle"/>
+                            <Box className={useStockState ? 'vertical_triangle' : 'handstand_traiangle'}/>
                                 942.5 (5.14%)
                         </Typography>
 
@@ -94,12 +93,12 @@ const ContactPage: React.FC = () => {
                         </Typography>
                         <Typography
                             sx={{
-                                color: 'green',
+                                color: useStockState ? 'red' : 'green',
                                 display: 'inline',
                                 paddingLeft: '30px',
                             }}
                         >
-                            <Box className="handstand_traiangle"/>
+                            <Box className={useStockState ? 'vertical_triangle' : 'handstand_traiangle'} />
                                 429.00 (-1.99%)
                         </Typography>
                     </Box>
