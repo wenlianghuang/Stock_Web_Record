@@ -36,10 +36,9 @@ const Dashboard: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
           <Topbar />
         </Toolbar>
       </AppBar>
-      
       <Box
         component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3, marginLeft: `${drawerWidth}px`,marginTop:'64px' }}
+        //sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3, marginLeft: `${drawerWidth}px`,marginTop:'64px' }}
       >
         <Toolbar />
         {children}

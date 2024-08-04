@@ -28,7 +28,15 @@
       transform: translateX(-100%);
     }
 }
-  
+
+.marquee-wrapper {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 4; /* 确保跑马灯在背景图像上方 */
+  }
 .marquee {
     display: inline-block;
     animation: marquee 15s linear infinite;

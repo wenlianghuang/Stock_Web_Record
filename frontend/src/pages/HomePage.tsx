@@ -106,13 +106,7 @@ const HomePage: React.FC = () => {
       </Container>
       {/* Marquee */}
       <Box
-        sx={{
-          position: 'absolute',
-          bottom: '20px',
-          width: '100%',
-          overflow: 'hidden',
-          whiteSpace: 'nowrap',
-        }}
+        className="marquee-wrapper" 
       >
         <Typography
           variant="h6"
