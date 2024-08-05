@@ -45,7 +45,7 @@ import React, { useEffect, useState } from "react";
 import image1 from "../assets/images/Image1.jpg";
 import image2 from "../assets/images/Image2.jpg";
 import image3 from "../assets/images/Image3.jpg";
-
+import "../styles/HomePage.css";
 const images = [image1, image2, image3];
 
 const HomePage: React.FC = () => {
@@ -63,6 +63,7 @@ const HomePage: React.FC = () => {
 
   return (
     <Box
+      /*
       sx={{
         position: 'relative',
         width: '100vw',
@@ -72,9 +73,15 @@ const HomePage: React.FC = () => {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
+      */
+      className="fullscreen-bg"
+      style={{
+        backgroundImage: `url(${currentImage})`,
+      }}
     >
       
       <Container
+        /*
         sx={{
           position: 'relative',
           zIndex: 1,
@@ -87,6 +94,8 @@ const HomePage: React.FC = () => {
           textAlign: 'center',
           color: 'white',
         }}
+        */
+       className="container-centered"
       >
         <Typography variant="h3" component="h1" gutterBottom>
           Home Page
@@ -95,6 +104,18 @@ const HomePage: React.FC = () => {
           This is the home page.
         </Typography>
       </Container>
+      {/* Marquee */}
+      <Box
+        className="marquee-wrapper" 
+      >
+        <Typography
+          variant="h6"
+          component="div"
+          className="marquee"
+        >
+          This is a scrolling text... Welcome to our website!
+        </Typography>
+      </Box>
     </Box>
   );
 };

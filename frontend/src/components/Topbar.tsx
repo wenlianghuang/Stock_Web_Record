@@ -15,7 +15,7 @@ const Topbar: React.FC = () => {
     
     <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'space-between' }}>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            My Dashboard
+            Stock Daily Record
         </Typography>
         <Button
           color="inherit"

@@ -15,6 +15,7 @@ const ScrollImagePage: React.FC = () => {
       <Box
         sx={{
           height: '100vh',
+          width: '100vw',
           backgroundImage: `url(${page1})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -28,6 +29,7 @@ const ScrollImagePage: React.FC = () => {
           ref={secondImageRef}
           sx={{
             height: '100vh',
+            width: '100vw',
             backgroundImage: `url(${page2})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
