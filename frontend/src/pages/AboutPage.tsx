@@ -13,19 +13,31 @@ const AboutPage: React.FC = () => {
 export default AboutPage;
 */
 
+import React, { useEffect, useState } from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
-import React from "react";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-const data = [
-  { name: 'Jan', value: 400 },
-  { name: 'Feb', value: 300 },
-  { name: 'Mar', value: 500 },
-  { name: 'Apr', value: 600 },
-  { name: 'May', value: 700 },
-];
-
 const AboutPage: React.FC = () => {
+  const [data, setData] = useState([
+    { name: 'Jan', value: 400 },
+    { name: 'Feb', value: 300 },
+    { name: 'Mar', value: 800 },
+    { name: 'Apr', value: 900 },
+    { name: 'May', value: 700 },
+  ]);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/update-data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(updatedData => setData(updatedData))
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
   return (
     <Container>
       <Box sx={{ my: 4 }}>
@@ -47,11 +59,11 @@ const AboutPage: React.FC = () => {
           </Typography>
           <ResponsiveContainer width="100%" height={200}>
             <LineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Line type="monotone" dataKey="value" stroke="#8884d8" strokeWidth={2} />
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Line type="monotone" dataKey="value" stroke="#8884d8" strokeWidth={2} />
             </LineChart>
           </ResponsiveContainer>
         </Grid>
@@ -59,4 +71,5 @@ const AboutPage: React.FC = () => {
     </Container>
   );
 };
+
 export default AboutPage;

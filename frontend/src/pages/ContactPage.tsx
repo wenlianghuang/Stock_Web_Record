@@ -4,9 +4,25 @@ import image from "../assets/images/Image1.jpg";
 import "../styles/SupportedIcon.css"
 const ContactPage: React.FC = () => {
     const [useStockState,setStockState] = useState(false);
+    const [stockData,setStockData] = useState([
+        {
+            name: '加權指數',
+            value: '21638.09',
+            change: '1000.01 (4.43%)',
+        },
+        {
+            name: '臺灣50指數',
+            value: '17402.81',
+            change: '942.5 (5.14%)',
+        },
+        {
+            name: '台指期',
+            value: '21097.00',
+            change: '429.00(-1.99%)',
+        },
+    ]);
     const handleToggle = () => {
-        setStockState(!useStockState);
-        
+        setStockState(!useStockState);   
     };
     return (
         <Box
@@ -54,7 +70,8 @@ const ContactPage: React.FC = () => {
                         // 允許動畫暫停和恢復
                         animationPlayState: 'running',
                     }}
-                >
+                >    
+                
                     <Box sx={{ display: 'inline-block', paddingRight: '80px' }}>
                         <Typography>
                             加權指數 21,638.09
