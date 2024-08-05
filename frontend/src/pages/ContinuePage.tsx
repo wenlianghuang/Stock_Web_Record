@@ -1,8 +1,8 @@
-import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
+import React from 'react';
 import { useInView } from 'react-intersection-observer';
-import page1 from '../assets/images/Image1.jpg'
-import page2 from '../assets/images/Image2.jpg'
+import page1 from '../assets/images/Image1.jpg';
+import page2 from '../assets/images/Image2.jpg';
 const ScrollImagePage: React.FC = () => {
   const { ref: secondImageRef, inView: secondImageInView } = useInView({
     triggerOnce: false, // 只触发一次
