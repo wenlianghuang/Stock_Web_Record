@@ -16,7 +16,7 @@ export default AboutPage;
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-
+import axios from "axios";
 const AboutPage: React.FC = () => {
   const [data, setData] = useState([
     { name: 'Jan', value: 400 },
@@ -25,35 +25,17 @@ const AboutPage: React.FC = () => {
     { name: 'Apr', value: 900 },
     { name: 'May', value: 700 },
   ]);
-  /*
-  useEffect(() => {
-    fetch('http://localhost:3001/update-data', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => response.json())
-      .then(updatedData => setData(updatedData))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
-  */
   useEffect(() => {
     fetchData(1000);
   },[]);
-
-  const fetchData = (newValue: number) => {
-    fetch('http://localhost:3001/update-data',{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({newValue}),
-    })
-      .then(response => response.json())
-      .then(updatedData => setData(updatedData))
-      .catch(error => console.error('Error fetch data: ', error));
-  }
+  const fetchData = async (newValue: number) => {
+    try {
+      const response = await axios.post('http://localhost:3001/update-data', { newValue });
+      setData(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
   return (
     <Container>
       <Box sx={{ my: 4 }}>
