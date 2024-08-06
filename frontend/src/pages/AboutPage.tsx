@@ -13,8 +13,8 @@ const AboutPage: React.FC = () => {
 export default AboutPage;
 */
 
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 const AboutPage: React.FC = () => {
@@ -25,7 +25,7 @@ const AboutPage: React.FC = () => {
     { name: 'Apr', value: 900 },
     { name: 'May', value: 700 },
   ]);
-
+  /*
   useEffect(() => {
     fetch('http://localhost:3001/update-data', {
       method: 'POST',
@@ -37,7 +37,23 @@ const AboutPage: React.FC = () => {
       .then(updatedData => setData(updatedData))
       .catch(error => console.error('Error fetching data:', error));
   }, []);
+  */
+  useEffect(() => {
+    fetchData(1000);
+  },[]);
 
+  const fetchData = (newValue: number) => {
+    fetch('http://localhost:3001/update-data',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({newValue}),
+    })
+      .then(response => response.json())
+      .then(updatedData => setData(updatedData))
+      .catch(error => console.error('Error fetch data: ', error));
+  }
   return (
     <Container>
       <Box sx={{ my: 4 }}>
@@ -66,6 +82,9 @@ const AboutPage: React.FC = () => {
               <Line type="monotone" dataKey="value" stroke="#8884d8" strokeWidth={2} />
             </LineChart>
           </ResponsiveContainer>
+          <Button variant="contained" color="primary" onClick={() => fetchData(1500)} sx={{ mt:2}}>
+            Update May Value to 1500
+          </Button>
         </Grid>
       </Box>
     </Container>
