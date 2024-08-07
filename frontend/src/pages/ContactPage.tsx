@@ -1,29 +1,30 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { Box, Container, Typography,Button } from "@mui/material";
 import image from "../assets/images/Image1.jpg";
 import "../styles/SupportedIcon.css"
+import axios from "axios";
 const ContactPage: React.FC = () => {
     const [useStockState,setStockState] = useState(false);
-    const [stockData,setStockData] = useState([
-        {
-            name: '加權指數',
-            value: '21638.09',
-            change: '1000.01 (4.43%)',
-        },
-        {
-            name: '臺灣50指數',
-            value: '17402.81',
-            change: '942.5 (5.14%)',
-        },
-        {
-            name: '台指期',
-            value: '21097.00',
-            change: '429.00(-1.99%)',
-        },
+    const [stockData, setStockData] = useState([
+        { name: "加權指數", value: "21,638.09", change: "1000.01 (-4.43%)" },
+        { name: "臺灣50指數", value: "17,402.81", change: "942.5 (-5.14%)" },
+        { name: "台指期", value: "21,097.00", change: "429.00 (-1.99%)" },
     ]);
     const handleToggle = () => {
         setStockState(!useStockState);   
     };
+    const fetchUpdatedData = async () => {
+        try {
+            const response = await axios.post("http://localhost:3001/api/update-data", stockData);
+            setStockData(response.data);
+        } catch (error) {
+            console.error("Error fetching updated data:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchUpdatedData();
+    }, []);
     return (
         <Box
       sx={{
@@ -71,42 +72,10 @@ const ContactPage: React.FC = () => {
                         animationPlayState: 'running',
                     }}
                 >    
-                
-                    <Box sx={{ display: 'inline-block', paddingRight: '80px' }}>
+                    {stockData.map((stock,index) => (
+                        <Box key={index} sx={{ display: 'inline-block', paddingRight: '80px' }}>
                         <Typography>
-                            加權指數 21,638.09
-                        </Typography>
-                         
-                        <Typography
-                            sx={{
-                                color: useStockState ? 'red' : 'green', 
-                                display: 'inline',
-                                paddingLeft: '30px',
-                            }}
-                        >
-                            <Box className={useStockState ? 'vertical_triangle' : 'handstand_traiangle'}/>
-                                1000.01 (4.43%)
-                        </Typography>
-                    </Box>
-                    <Box sx={{ display: 'inline-block', paddingRight: '80px' }}>
-                        <Typography>
-                            臺灣50指數 17,402.81
-                        </Typography>
-                        <Typography
-                            sx={{
-                                color: useStockState ? 'red' : 'green', 
-                                display: 'inline',
-                                paddingLeft: '30px',
-                            }}
-                        >
-                            <Box className={useStockState ? 'vertical_triangle' : 'handstand_traiangle'}/>
-                                942.5 (5.14%)
-                        </Typography>
-
-                    </Box>
-                    <Box sx={{ display: 'inline-block', paddingRight: '80px' }}>
-                        <Typography>
-                            台指期 21,097.00 (-429.00)
+                            {stock.name} {stock.value}
                         </Typography>
                         <Typography
                             sx={{
@@ -115,11 +84,13 @@ const ContactPage: React.FC = () => {
                                 paddingLeft: '30px',
                             }}
                         >
-                            <Box className={useStockState ? 'vertical_triangle' : 'handstand_traiangle'} />
-                                429.00 (-1.99%)
+                            <Box className={useStockState ? 'vertical_triangle' : 'handstand_traiangle'}/>
+                            {stock.change}
                         </Typography>
                     </Box>
+                    ))}
                 </Typography>
+                    
             </Box>
     </Box>
     );
