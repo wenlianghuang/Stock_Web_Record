@@ -27,7 +27,7 @@ func Sox() {
 	c.OnHTML(".livePrice.yf-mgkamr > span", func(e *colly.HTMLElement) {
 		//println(e.Text)
 		text := e.Text
-		data[len(data)-1]["value"] = text
+		data[3]["value"] = text
 	})
 	// 漲跌數字和比例
 	c.OnHTML(".priceChange.yf-mgkamr > span", func(e *colly.HTMLElement) {
@@ -35,7 +35,8 @@ func Sox() {
 
 	})
 	c.Visit("https://finance.yahoo.com/quote/%5ESOX?p=^SOX")
-	data[len(data)-1]["change"] = allstring[0] + " " + allstring[1]
+	data[3]["change"] = allstring[0] + " " + allstring[1]
+	print(data[3]["change"])
 	updatedData, err := json.MarshalIndent(data, "", "")
 	if err != nil {
 		fmt.Println("Error marshlling JSON:", err)

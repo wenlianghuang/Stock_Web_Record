@@ -1,8 +1,10 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography,Grid } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import image from "../assets/images/Image1.jpg";
 import "../styles/SupportedIcon.css";
+import anotherimage from "../assets/images/Image2.jpg";
+import image4 from "../assets/images/image4.jpg";
 const ContactPage: React.FC = () => {
     const [useStockState,setStockState] = useState(false);
     const [stockData, setStockData] = useState([
@@ -33,33 +35,31 @@ const ContactPage: React.FC = () => {
         return () => clearInterval(interval)
     }, []);
     return (
-        <Box
-      sx={{
-        width: '100vw',
-        backgroundImage: `url(${image})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        paddingTop: '40%', // 这个可以调整，取决于你想要的图片比例
-        
-        
-      }}
-    >
-        <Button
-                onClick={handleToggle}
-                sx={{ position: 'absolute', bottom: 100, left: 20, zIndex: 1000 }}
+        <React.Fragment>
+            {/* 第一個區塊 */}
+            <Box
+                sx={{
+                    width: '100vw',
+                    height: '500px', // 限制背景圖像的高度
+                    backgroundImage: `url(${image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
             >
-                Toggle Triangle Color
-            </Button>
-        {/* 跑馬燈 */}
-        <Box
+                
+            </Box>
+
+            {/* 跑馬燈 */}
+            <Box
                 sx={{
                     width: '100%',
                     backgroundColor: 'rgba(0, 0, 0, 0.5)', // 跑馬燈背景顏色
                     color: 'white', // 跑馬燈文字顏色
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
+                    position: 'relative',
                     overflow: 'hidden', // 確保文字只在盒子內滾動
                     whiteSpace: 'nowrap',
                     boxSizing: 'border-box',
@@ -69,38 +69,81 @@ const ContactPage: React.FC = () => {
                     },
                 }}
             >
-            
                 <Typography
                     className="marquee-content"
                     sx={{
                         display: 'inline-block',
                         animation: 'marquee 15s linear infinite',
-                        // 允許動畫暫停和恢復
                         animationPlayState: 'running',
                     }}
                 >    
-                    {stockData.map((stock,index) => (
+                    {stockData.map((stock, index) => (
                         <Box key={index} sx={{ display: 'inline-block', paddingRight: '80px' }}>
-                        <Typography>
-                            {stock.name} {stock.value}
-                        </Typography>
-                        <Typography
-                            sx={{
-                                //color: useStockState ? 'red' : 'green',
-                                color: stock.change.startsWith('-') ? 'green' : 'red',
-                                display: 'inline',
-                                paddingLeft: '30px',
-                            }}
-                        >
-                            <Box className={stock.change.startsWith('-') ? 'handstand_traiangle' : 'vertical_triangle'}/>
-                            {stock.change}
-                        </Typography>
-                    </Box>
+                            <Typography>
+                                {stock.name} {stock.value}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    color: stock.change.startsWith('-') ? 'green' : 'red',
+                                    display: 'inline',
+                                    paddingLeft: '30px',
+                                }}
+                            >
+                                <Box className={stock.change.startsWith('-') ? 'handstand_traiangle' : 'vertical_triangle'} />
+                                {stock.change}
+                            </Typography>
+                        </Box>
                     ))}
-                </Typography>
-                    
+                </Typography>        
             </Box>
-    </Box>
+
+            {/* 第二個區塊 */}
+            <Box sx={{ marginTop: '0px' }}>
+                <Grid container spacing={2}>
+                    <Grid item xs={6}>
+                        <Box
+                            component="img"
+                            src={anotherimage}
+                            alt="Another Image"
+                            sx={{
+                                width: '400px',
+                                height: '400px',
+                                //borderRadius: '8px',
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={6} sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Typography variant="h6">
+                            這是一個示例文本，顯示在圖片的右側。你可以在這裡放置任意的內容，根據你的需求調整佈局和樣式。
+                        </Typography>
+                    </Grid>
+                </Grid>
+            </Box>
+            <Box sx={{marginTop: '20px', display: 'flex', justifyContent: 'center'}}>
+                <Grid container spacing={2}>
+                    <Grid item xs={8} sx={{display: 'flex',alignItems: 'center'}}>
+                        <Typography variant="h6">
+                            ETF整合資訊平台「e添富」於8月11日正式上線
+                            <Typography variant="body1">
+                                本網站提供了ETF的最新資訊，包括價格、漲跌幅等。歡迎訪問！
+                            </Typography>
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <Box
+                            component="img"
+                            src={image4}
+                            alt="Image 4"
+                            sx={{
+                                width: '400px',
+                                height: '400px',
+                            }}
+                            />
+                    </Grid>
+                </Grid>
+            </Box>
+        </React.Fragment>
+        
     );
 };
 
