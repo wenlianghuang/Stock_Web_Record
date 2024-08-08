@@ -1,3 +1,4 @@
+import { exec } from 'child_process';
 import cors from 'cors';
 import express, { Request, Response } from 'express';
 const fs = require('fs');
@@ -27,10 +28,10 @@ app.post('/update-data', (req: Request, res: Response) => {
 /*
 app.post('/api/update-data', (req, res) => {
     
-    // 获取前端发送的数据
+    // 獲取前端發送的數據
     const stockData = req.body;
 
-    // 模拟处理数据，简单地将每个股票的 value 和 change 修改一下
+    // 模擬處理數據，簡單地將每個股票的 value 和 change 修改一下
     const updatedStockData = stockData.map((stock: any) => {
         let newValue = parseFloat(stock.value.replace(/,/g, '')) + Math.random() * 100;
         newValue = Number(newValue.toFixed(2));
@@ -48,7 +49,7 @@ app.post('/api/update-data', (req, res) => {
         };
     });
 
-    // 返回处理后的数据
+    // 返回處理後的數據
     res.json(updatedStockData);
     
     fs.readFile('D:\\Stock_Web_Record\\data.json', 'utf8', (err: NodeJS.ErrnoException | null, data: string) => {
@@ -66,26 +67,38 @@ app.post('/api/update-data', (req, res) => {
     });
 });
 */
-// 定义存储数据的变量
+// 定義儲存數據的變量
 let stockData: any[] = [];
 
-// 读取 JSON 文件并更新数据
+// 讀取 JSON file並更新數據
 const updateData = () => {
-    fs.readFile('D:\\Stock_Web_Record\\data.json', 'utf8', (err: NodeJS.ErrnoException | null, data: string) => {
-        if (err) {
-            console.error("Error reading JSON file:", err);
+    exec('D:\\Stock_Web_Record\\running_go\\Stock_Instance.exe', (errExec, stdout, stderr) => {
+        if (errExec) {
+            console.error("Error executing Stock_Instance.exe:", errExec);
             return;
         }
-        stockData = JSON.parse(data);
-        console.log("Data updated:", stockData);
+        console.log(`Output: ${stdout}`);
+        if(stderr) {
+            console.error(`Error: ${stderr}`);
+        }
+
+        fs.readFile('D:\\Stock_Web_Record\\data.json', 'utf8', (err: NodeJS.ErrnoException | null, data: string) => {
+            if (err) {
+                console.error("Error reading JSON file:", err);
+                return;
+            }
+            stockData = JSON.parse(data);
+            console.log("Data updated:", stockData);
+        });
     });
 };
 
-// 初始化数据
+// 初始化數據
 updateData();
 
-// 每隔 10 秒钟更新一次数据
-setInterval(updateData, 10000);
+
+// 每隔 10 秒鐘更新一次數據
+setInterval(updateData, 30000);
 app.post('/api/update-data', (req, res) => {
     res.json(stockData);
 });

@@ -1,5 +1,22 @@
 [
-    { "name": "加權指數", "value": "21,638.09", "change": "100.01 (-4.43%)" },
-    { "name": "臺灣50指數", "value": "17,402.81", "change": "942.5 (-5.14%)" },
-    { "name": "台指期", "value": "21,097.00", "change": "429.00 (-1.99%)" }
+{
+"change": "-234.21 (-0.60%)",
+"name": "Dow Jones Industrial Average",
+"value": "38,763.45"
+},
+{
+"change": "-171.05 (-1.05%)",
+"name": "NASDAQ Composite",
+"value": "16,195.81"
+},
+{
+"change": "-40.53 (-0.77%)",
+"name": "S\u0026P 500",
+"value": "5,199.50"
+},
+{
+"change": "-141.30 (-3.09%)",
+"name": "PHLX Semiconductor ",
+"value": "4,426.27"
+}
 ]

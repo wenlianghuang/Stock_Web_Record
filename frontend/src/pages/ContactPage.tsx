@@ -1,14 +1,15 @@
-import React,{useState,useEffect} from "react";
-import { Box, Container, Typography,Button } from "@mui/material";
-import image from "../assets/images/Image1.jpg";
-import "../styles/SupportedIcon.css"
+import { Box, Button, Typography } from "@mui/material";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import image from "../assets/images/Image1.jpg";
+import "../styles/SupportedIcon.css";
 const ContactPage: React.FC = () => {
     const [useStockState,setStockState] = useState(false);
     const [stockData, setStockData] = useState([
-        { name: "加權指數", value: "21,638.09", change: "1000.01 (-4.43%)" },
-        { name: "臺灣50指數", value: "17,402.81", change: "942.5 (-5.14%)" },
-        { name: "台指期", value: "21,097.00", change: "429.00 (-1.99%)" },
+        { name: "Dow Jones Industrial Average", value: "21,638.09", change: "1000.01 (-4.43%)" },
+        { name: "NASDAQ Composite", value: "17,402.81", change: "942.5 (-5.14%)" },
+        { name: "S&P 500", value: "21,097.00", change: "429.00 (-1.99%)" },
+        { name: "PHLX Semiconductor", value: "4,426.27", change: "-141.30 (-3.09%)"}
     ]);
     const handleToggle = () => {
         setStockState(!useStockState);   
@@ -24,6 +25,12 @@ const ContactPage: React.FC = () => {
 
     useEffect(() => {
         fetchUpdatedData();
+
+        const interval = setInterval(()=>{
+            fetchUpdatedData();
+        },30000);
+
+        return () => clearInterval(interval)
     }, []);
     return (
         <Box
@@ -79,12 +86,13 @@ const ContactPage: React.FC = () => {
                         </Typography>
                         <Typography
                             sx={{
-                                color: useStockState ? 'red' : 'green',
+                                //color: useStockState ? 'red' : 'green',
+                                color: stock.change.startsWith('-') ? 'green' : 'red',
                                 display: 'inline',
                                 paddingLeft: '30px',
                             }}
                         >
-                            <Box className={useStockState ? 'vertical_triangle' : 'handstand_traiangle'}/>
+                            <Box className={stock.change.startsWith('-') ? 'handstand_traiangle' : 'vertical_triangle'}/>
                             {stock.change}
                         </Typography>
                     </Box>

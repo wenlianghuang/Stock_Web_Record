@@ -15,5 +15,5 @@ func main() {
 	DowJones.Doj()
 	Nasdaq.NASDAQ()
 	Sox.Sox()
-	//Ko.Ko()
+
 }
