@@ -1,22 +1,22 @@
 [
 {
-"change": "+430.14 (+1.11%)",
+"change": "+51.05 (+0.13%)",
 "name": "Dow Jones Industrial Average",
-"value": "39,193.59"
+"value": "39,497.54"
 },
 {
-"change": "+169.20 (+1.04%)",
+"change": "+85.28 (+0.51%)",
 "name": "NASDAQ Composite",
-"value": "16,365.01"
+"value": "16,745.30"
 },
 {
-"change": "+57.63 (+1.11%)",
+"change": "+24.85 (+0.47%)",
 "name": "S\u0026P 500",
-"value": "5,257.13"
+"value": "5,344.16"
 },
 {
-"change": "-141.30 (-3.09%)",
-"name": "PHLX Semiconductor ",
-"value": "4,426.27"
+"change": "+0.79 (+1.04%)",
+"name": "Crude Oil",
+"value": "76.98"
 }
 ]

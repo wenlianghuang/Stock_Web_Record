@@ -1,4 +1,4 @@
-## set NODE_OPTIONS=--openssl-legacy-provider && npm run start => for cmd
+## set node_options=--openssl-legacy-provider && npm run start => for cmd
 ## npx ts-node server.ts
 # Getting Started with Create React App
 

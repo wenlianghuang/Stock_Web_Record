@@ -31,7 +31,7 @@ const Dashboard: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1/*,background:'red'*/ }}>
         <Toolbar>
           <Topbar />
         </Toolbar>

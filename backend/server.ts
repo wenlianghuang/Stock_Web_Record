@@ -8,7 +8,7 @@ const port = 3001;
 app.use(cors());
 app.use(express.json());
 
-app.post('/update-data', (req: Request, res: Response) => {
+app.post('/Monthly-Record', (req: Request, res: Response) => {
 
     const {newValue} = req.body;
     const data = [

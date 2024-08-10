@@ -30,7 +30,7 @@ const AboutPage: React.FC = () => {
   },[]);
   const fetchData = async (newValue: number) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/update-data', { newValue });
+      const response = await axios.post('http://localhost:3001/Monthly-Record', { newValue });
       setData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
