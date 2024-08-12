@@ -102,6 +102,20 @@ setInterval(updateData, 30000);
 app.post('/api/update-data', (req, res) => {
     res.json(stockData);
 });
+
+// Send fundamental-analysis page
+let contentData: any; // Declare the variable 'contentData'
+app.post('/api/receiv-fundamental-analysis', (req, res) => {
+    const { content } = req.body;
+    
+    contentData = content;
+    res.status(200).send('Fundamental analysis data received');
+});
+
+app.post('/api/send-fundamental-analysis', (req, res) => {
+    res.json({ content: contentData});
+});
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
