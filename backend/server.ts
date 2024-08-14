@@ -1,12 +1,22 @@
 import { exec } from 'child_process';
 import cors from 'cors';
 import express, { Request, Response } from 'express';
+import pgPromise from 'pg-promise';
 const fs = require('fs');
 const app = express();
 const port = 3001;
-
+const pgp = pgPromise();
 app.use(cors());
 app.use(express.json());
+
+const db = pgp({
+    host: 'localhost',
+    port: 5432,
+    database: 'Stock_Record',
+    user: 'postgres',
+    password: 'wenliang75'
+});
+
 
 app.post('/Monthly-Record', (req: Request, res: Response) => {
 
@@ -77,7 +87,7 @@ const updateData = () => {
             console.error("Error executing Stock_Instance.exe:", errExec);
             return;
         }
-        console.log(`Output: ${stdout}`);
+        //console.log(`Output: ${stdout}`);
         if(stderr) {
             console.error(`Error: ${stderr}`);
         }
@@ -88,7 +98,7 @@ const updateData = () => {
                 return;
             }
             stockData = JSON.parse(data);
-            console.log("Data updated:", stockData);
+            //console.log("Data updated:", stockData);
         });
     });
 };
@@ -114,6 +124,28 @@ app.post('/api/receiv-fundamental-analysis', (req, res) => {
 
 app.post('/api/send-fundamental-analysis', (req, res) => {
     res.json({ content: contentData});
+});
+
+app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+
+    // Query the database to check if the username and password match
+    // Assuming you are using a library like pg-promise to interact with PostgreSQL
+    db.oneOrNone('SELECT * FROM stockuser WHERE account = $1 AND password = $2', [username, password])
+        .then((user: any) => {
+            if (user) {
+                // Username and password match, return success message
+                res.json({ message: 'Login successful' });
+            } else {
+                // Username and password do not match, return error message
+                //res.status(401).json({ message: 'Invalid username or password' });
+                res.json({ message: 'Invalid username or password' });
+            }
+        })
+        .catch((error: any) => {
+            console.error('Error querying the database:', error);
+            res.status(500).json({ message: 'Server error' });
+        });
 });
 
 app.listen(port, () => {

@@ -6,6 +6,7 @@ import image2 from "../assets/images/Image2.jpg";
 import image3 from "../assets/images/Image3.jpg";
 import "../styles/HomePage.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const images = [image1, image2, image3];
 
 const HomePage: React.FC = () => {
@@ -19,12 +20,25 @@ const HomePage: React.FC = () => {
       setError("Both fields are required.");
       return;
     }
-
+    axios.post("http://localhost:3001/api/login", { username, password })
+      .then((response) => {
+        const data = response.data;
+        if (data.message === "Login successful") {
+          setError("");
+          navigate("/stocklist");
+        } else if(data.message === "Invalid username or password") {
+          setError("Invalid username or password.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error logging in:", error);
+        setError("An error occurred.");
+      });
     // Add your authentication logic here
-    setError("");
-    console.log("Username:", username);
-    console.log("Password:", password);
-    navigate("/stocklist");
+    //setError("");
+    //console.log("Username:", username);
+    //console.log("Password:", password);
+    //navigate("/stocklist");
     
   };
 
