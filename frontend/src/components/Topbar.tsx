@@ -14,7 +14,7 @@ const Topbar: React.FC = () => {
   return (
     
     <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'space-between' }}>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" sx={{ flexGrow: 1, textDecoration: 'none', color:'white' }} component={RouterLink} to='/'>
             Stock Daily Record
         </Typography>
         <Button
