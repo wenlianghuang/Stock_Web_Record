@@ -149,6 +149,25 @@ app.post('/api/login', (req, res) => {
         });
 });
 
+// Personal Stock Record
+app.post('/api/ownerstock', (req, res) => {
+    //console.log("username in backend: ",req.body);
+    db.any("SELECT a.stock_code,a.stock_name,a.stock_price FROM stockbank as a INNER JOIN stockuser as b ON a.ownername = b.account WHERE b.account = $1", [req.body.username])
+        .then((user: any) => {
+            if (user) {
+                //console.log("user: ", user);
+                //res.json({ message: 'Acount exists' });
+                res.json(user);
+            } else {
+                res.json({ message: 'Record not exist' });
+            }
+        })
+        .catch((error: any) => {
+            console.error('Error querying the database:', error);
+            res.status(500).json({ message: 'Server error' });
+        });
+});
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });

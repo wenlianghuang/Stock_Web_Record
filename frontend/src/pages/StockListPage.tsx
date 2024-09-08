@@ -1,21 +1,34 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { Grid,Typography,Box, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import axios from 'axios';
 const StockListPage: React.FC = () => {
     const navigate = useNavigate();
-    const items = [
-        { id: 1, top_title: '聯上發 2537', content: '22.00', bottom_number: '0.60 2,80%',link: '/Fundamental_Analysis' },
-        { id: 2, top_title: '金居 8358', content: '20.85', bottom_number: '2.00 3.38%',  link: '/Fundamental_Analysis' },
-        { id: 3, top_title: '富強鑫 6603', content: '20.70', bottom_number: '0.25 1.19%', link: '/Fundamental_Analysis' },
-        { id: 4, top_title: '友達 2409', content: '15.45', bottom_number: '0.40 2.65%', link: '/Fundamental_Analysis' },
-        { id: 5, top_title: '合勤控 3704', content: '33.55', bottom_number: '0.05 0.14%', link: '/Fundamental_Analysis' },
-        { id: 6, top_title: '南亞科 2408', content: '51.00', bottom_number: '1.50 3.03%', link: '/Fundamental_Analysis' },
-        { id: 7, top_title: '品安 8088', content: '31.85', bottom_number: '0.05 0.15%', link: '/Fundamental_Analysis' },
-        { id: 8, top_title: '鴻海 2317', content: '168.50', bottom_number: '5.00 3.05%', link: '/Fundamental_Analysis' },
+    const location = useLocation();
+    const [stockitems, setStockItems] = useState([]);
+    const [subitems,setSubitems] = useState([]);
+    const [username, setUsername] = useState("");
 
-    ];
+    
+    useEffect(() => {
+        const state = location.state as { username: string };
+        if (state && state.username) {
+            setUsername(state.username);
+        }
 
+        axios.post('http://localhost:3001/api/ownerstock', { username: state.username })
+            .then(response => {
+                setStockItems(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching items:', error);
+            });
+    }, [location.state]);
+
+    let test = subitems.map((item: any) => {
+        return item.stock_name;
+    });
+    console.log("test:",test);
     const handleButtonClick = (content: string, link: string) => {
         axios.post('http://localhost:3001/api/receiv-fundamental-analysis', { content })
             .then(() => {
@@ -27,10 +40,11 @@ const StockListPage: React.FC = () => {
     };
     return (
         <Grid container spacing={2}>
-            {items.map((item) => (
-                <Grid item xs={12} sm={4} key={item.id}>
+            {stockitems.map((stockitem:any) => (
+                <Grid item xs={12} sm={4} key={stockitem.stock_name}>
                     <Button 
-                        onClick={() => handleButtonClick(item.top_title, item.link)}
+                        //onClick={() => handleButtonClick(item.top_title, item.link)}
+                        onClick={() => handleButtonClick(stockitem.stock_name, "/Fundamental_Analysis")}
                         sx={{
                             width: '100%',
                             padding: 0,
@@ -55,9 +69,11 @@ const StockListPage: React.FC = () => {
                             
                         }}
                     >
-                        <Typography variant="body1">{item.top_title}</Typography>
-                        <Typography variant="h6">{item.content}</Typography>
-                        <Typography variant="body1">{item.bottom_number}</Typography>
+                        
+                        <Typography variant="body1">{stockitem.stock_code}</Typography>
+                        <Typography variant="h6">{stockitem.stock_price}</Typography>
+                        <Typography variant="body1">{stockitem.stock_name}</Typography>
+                    
                     </Box>
                     </Button>
                 </Grid>
