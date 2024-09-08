@@ -152,7 +152,7 @@ app.post('/api/login', (req, res) => {
 // Personal Stock Record
 app.post('/api/ownerstock', (req, res) => {
     //console.log("username in backend: ",req.body);
-    db.any("SELECT a.stock_code,a.stock_name,a.stock_price FROM stockbank as a INNER JOIN stockuser as b ON a.ownername = b.account WHERE b.account = $1", [req.body.username])
+    db.any("SELECT a.stock_code,a.stock_name,a.stock_price,a.stock_number FROM stockbank as a INNER JOIN stockuser as b ON a.ownername = b.account WHERE b.account = $1", [req.body.username])
         .then((user: any) => {
             if (user) {
                 //console.log("user: ", user);
