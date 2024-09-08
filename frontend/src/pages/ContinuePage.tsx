@@ -11,7 +11,7 @@ const ScrollImagePage: React.FC = () => {
 
   return (
     <div style={{ overflowX: 'hidden' }}>
-      {/* 第一张全屏图片 */}
+      {/* 第二張全螢幕圖片 */}
       <Box
         sx={{
           height: '100vh',
@@ -22,9 +22,9 @@ const ScrollImagePage: React.FC = () => {
           position: 'relative',
         }}
       />
-      {/* 滚动后的内容 */}
+      {/* 滾動後的內容 */}
       <Container sx={{ mt: 4 }}>
-        {/* 第二张图片 */}
+        {/* 第二張圖片 */}
         <Box
           ref={secondImageRef}
           sx={{
@@ -40,7 +40,7 @@ const ScrollImagePage: React.FC = () => {
         />
         {/* 其他内容 */}
         <Typography variant="h4" sx={{ mt: 4 }}>
-          这里可以放一些其他内容...
+          這裡可以放一些其他內容...
         </Typography>
       </Container>
     </div>

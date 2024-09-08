@@ -9,6 +9,7 @@ const pgp = pgPromise();
 app.use(cors());
 app.use(express.json());
 
+// Set database connection
 const db = pgp({
     host: 'localhost',
     port: 5432,
