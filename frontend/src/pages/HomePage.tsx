@@ -25,10 +25,6 @@ const HomePage: React.FC = () => {
         const data = response.data;
         if (data.message === "Login successful") {
           setError("");
-          console.log("userame:", username);
-          console.log("password", password);
-          //navigate("/stocklist");
-          //navigate("/stocklist", { state: { username: username } });
           navigate("/stocklist", { state: { username: username } });
         } else if(data.message === "Invalid username or password") {
           setError("Invalid username or password.");

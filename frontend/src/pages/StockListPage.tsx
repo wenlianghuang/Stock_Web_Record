@@ -6,11 +6,11 @@ const StockListPage: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [stockitems, setStockItems] = useState([]);
-    const [subitems,setSubitems] = useState([]);
     const [username, setUsername] = useState("");
 
     
     useEffect(() => {
+        // location.state主要是擷取從HomePage傳過來的username
         const state = location.state as { username: string };
         if (state && state.username) {
             setUsername(state.username);
@@ -24,11 +24,9 @@ const StockListPage: React.FC = () => {
                 console.error('Error fetching items:', error);
             });
     }, [location.state]);
+    // [location.state]是為了讓useEffect在location.state改變時執行
 
-    let test = subitems.map((item: any) => {
-        return item.stock_name;
-    });
-    console.log("test:",test);
+    
     const handleButtonClick = (content: string, link: string) => {
         axios.post('http://localhost:3001/api/receiv-fundamental-analysis', { content })
             .then(() => {
@@ -71,8 +69,8 @@ const StockListPage: React.FC = () => {
                     >
                         
                         <Typography variant="body1">{stockitem.stock_code}</Typography>
-                        <Typography variant="h6">{stockitem.stock_price}</Typography>
-                        <Typography variant="body1">{stockitem.stock_name}</Typography>
+                        <Typography variant="h6">{stockitem.stock_name}</Typography>
+                        <Typography variant="body1">Number: {stockitem.stock_number}</Typography>
                     
                     </Box>
                     </Button>
