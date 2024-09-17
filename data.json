@@ -1,22 +1,22 @@
 [
 {
-"change": "+319.51 (+0.79%)",
+"change": "+235.06 (+0.58%)",
 "name": "Dow Jones Industrial Average",
-"value": "40,664.92"
+"value": "41,096.77"
 },
 {
-"change": "+209.52 (+1.26%)",
+"change": "+174.14 (+1.00%)",
 "name": "NASDAQ Composite",
-"value": "16,900.35"
+"value": "17,569.68"
 },
 {
-"change": "+52.42 (+0.97%)",
+"change": "+41.63 (+0.75%)",
 "name": "S\u0026P 500",
-"value": "5,460.84"
+"value": "5,595.76"
 },
 {
-"change": "-0.04 (-0.06%)",
+"change": "+0.89 (+1.29%)",
 "name": "Crude Oil",
-"value": "67.63"
+"value": "69.86"
 }
 ]

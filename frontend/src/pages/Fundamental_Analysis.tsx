@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Typography } from '@mui/material';
 import CandlestickChart from './CandlestickChart';
+import { CandlestickChartGoogleChart } from './CandlestickGooleChart';
+import CandlestickChart3 from './CandlestickChart3';
 const Fundamental_Analysis: React.FC = () => {
     const [content, setContent] = useState<string>('');
 
@@ -19,7 +21,7 @@ const Fundamental_Analysis: React.FC = () => {
         <div>
             <Typography variant="h4">Content from Previous Page:</Typography>
             <Typography variant="h6">{content}</Typography>
-            <CandlestickChart />
+            <CandlestickChart3 />
         </div>
     );
 };
