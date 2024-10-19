@@ -116,15 +116,17 @@ app.post('/api/update-data', (req, res) => {
 
 // Send fundamental-analysis page
 let contentData: any; // Declare the variable 'contentData'
-app.post('/api/receiv-fundamental-analysis', (req, res) => {
-    const { content } = req.body;
+let stockidData: string;
+app.post('/api/receive-fundamental-analysis', (req, res) => {
+    const { content,id } = req.body;
     
     contentData = content;
+    stockidData = id;
     res.status(200).send('Fundamental analysis data received');
 });
 
 app.post('/api/send-fundamental-analysis', (req, res) => {
-    res.json({ content: contentData});
+    res.json({ content: contentData, stockid: stockidData });
 });
 
 app.post('/api/login', (req, res) => {

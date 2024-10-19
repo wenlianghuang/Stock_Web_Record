@@ -27,8 +27,8 @@ const StockListPage: React.FC = () => {
     // [location.state]是為了讓useEffect在location.state改變時執行
 
     
-    const handleButtonClick = (content: string, link: string) => {
-        axios.post('http://localhost:3001/api/receiv-fundamental-analysis', { content })
+    const handleButtonClick = (content: string,id: string, link: string) => {
+        axios.post('http://localhost:3001/api/receive-fundamental-analysis', { content,id })
             .then(() => {
                 navigate(link);
             })
@@ -42,7 +42,7 @@ const StockListPage: React.FC = () => {
                 <Grid item xs={12} sm={4} key={stockitem.stock_name}>
                     <Button 
                         //onClick={() => handleButtonClick(item.top_title, item.link)}
-                        onClick={() => handleButtonClick(stockitem.stock_name, "/Fundamental_Analysis")}
+                        onClick={() => handleButtonClick(stockitem.stock_name,stockitem.stock_code , "/Fundamental_Analysis")}
                         sx={{
                             width: '100%',
                             padding: 0,
