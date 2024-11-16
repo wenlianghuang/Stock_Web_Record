@@ -117,6 +117,7 @@ app.post('/api/update-data', (req, res) => {
 // Send fundamental-analysis page
 let contentData: any; // Declare the variable 'contentData'
 let stockidData: string;
+// receive and send are based on backend
 app.post('/api/receive-fundamental-analysis', (req, res) => {
     const { content,id } = req.body;
     
