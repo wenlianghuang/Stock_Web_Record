@@ -7,6 +7,7 @@ import ScrollImagePage from './pages/ContinuePage';
 import Fundamental_Analysis from './pages/Fundamental_Analysis';
 import HomePage from './pages/HomePage';
 import StockListPage from './pages/StockListPage';
+import SignUpPage from './pages/SignUpPage';
 import './styles/App.css';
 
 const App: React.FC = () => {
@@ -20,6 +21,7 @@ const App: React.FC = () => {
           <Route path="/page2" element={<ScrollImagePage />} />
           <Route path="/stocklist" element={<StockListPage />} />
           <Route path='/Fundamental_Analysis' element={<Fundamental_Analysis />} />
+          <Route path="/signup" element={<SignUpPage />} />
         </Routes>
       </Dashboard>
     </Router>

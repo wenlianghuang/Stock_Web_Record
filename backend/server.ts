@@ -152,6 +152,24 @@ app.post('/api/login', (req, res) => {
         });
 });
 
+app.post('/api/signup', (req, res) => {
+    const { account, password } = req.body;
+    console.log("username: ", account);
+    console.log("password: ", password);
+    const createdatetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    console.log("createdatetime: ", createdatetime);
+    
+    db.none('INSERT INTO stockuser(account, password, createdatetime) VALUES($1, $2, $3)', [account, password, createdatetime])
+        .then(() => {
+            res.json({ message: 'Account created' });
+        })
+        .catch((error: any) => {
+            console.error('Error inserting into the database:', error);
+            res.status(500).json({ message: 'Server error' });
+        });
+    
+});
+
 // Personal Stock Record
 app.post('/api/ownerstock', (req, res) => {
     //console.log("username in backend: ",req.body);

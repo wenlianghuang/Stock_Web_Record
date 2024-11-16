@@ -142,8 +142,21 @@ const HomePage: React.FC = () => {
               </Button>
             </Grid>
           </Grid>
+          <Box display="flex" justifyContent="flex-start" width="100%" mt={2}>
+            <Typography variant="body2" color="textSecondary">
+              Don't have an account?{" "}
+              <Button
+                variant="text"
+                color="primary"
+                onClick={() => navigate("/signup")}
+              >
+                Sign Up
+              </Button>
+            </Typography>
+          </Box>
         </Box>
       </Container>
+    
     </React.Fragment>
     
   );

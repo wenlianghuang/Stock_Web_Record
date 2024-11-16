@@ -7,13 +7,13 @@ import {generateStockData,StockData} from '../components/generateStockData';
 //import { generateStockData, StockData } from '../pages/generateStockData';
 ChartJS.register(CategoryScale, LinearScale, TimeScale, TimeSeriesScale, Title, Tooltip, Legend, CandlestickController, CandlestickElement);
 
-interface CandlestickChart3Props {
+interface CandlestickChartProps {
   title: string;
 }
 
 // Define the functional component with props
 //const CandlestickChart3: React.FC<CandlestickChart3Props> = ({ title }) => {
-const CandlestickChart = ({ title }: CandlestickChart3Props) => {
+const CandlestickChart = ({ title }: CandlestickChartProps) => {
   const options: ChartOptions<'candlestick'> = {
     responsive: true,
     plugins: {
