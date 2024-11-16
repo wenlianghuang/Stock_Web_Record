@@ -9,6 +9,7 @@ const SignUpPage: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const [error, setError] = useState('');
+  const [successful, setSuccessful] = useState('');
 
     const handleSignUp = () => {
       if (!account || !password || !confirmPassword) {
@@ -25,7 +26,11 @@ const SignUpPage: React.FC = () => {
           const data = response.data;
           console.log('data:', data);
           if (data.message === 'Account created') {
+            setAccount('');
+            setPassword('');
+            setConfirmPassword('');
             setError('');
+            setSuccessful('Account created');
             // Redirect to the login page
           } else if (data.message === 'Account already exists') {
             setError('Account already exists');
@@ -52,6 +57,11 @@ const SignUpPage: React.FC = () => {
             {error && (
               <Typography variant="body1" color="error" gutterBottom>
                 {error}
+              </Typography>
+            )}
+            {successful && (
+              <Typography variant="body1" color="primary" gutterBottom>
+                {successful}
               </Typography>
             )}
             <TextField
