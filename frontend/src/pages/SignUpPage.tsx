@@ -60,7 +60,7 @@ const SignUpPage: React.FC = () => {
               </Typography>
             )}
             {successful && (
-              <Typography variant="body1" color="primary" gutterBottom>
+              <Typography variant="body1" style={{ color: 'orange' }} gutterBottom>
                 {successful}
               </Typography>
             )}
