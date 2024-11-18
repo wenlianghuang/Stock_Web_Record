@@ -22,12 +22,12 @@ func CrudeOil() {
 	}
 	c := colly.NewCollector()
 	var allstring []string
-	c.OnHTML(".livePrice.yf-mgkamr > span", func(e *colly.HTMLElement) {
+	c.OnHTML(".livePrice.yf-1tejb6 > span", func(e *colly.HTMLElement) {
 		//println(e.Text)
 		text := e.Text
 		data[3]["value"] = text
 	})
-	c.OnHTML(".priceChange.yf-mgkamr > span", func(e *colly.HTMLElement) {
+	c.OnHTML(".priceChange.yf-1tejb6 > span", func(e *colly.HTMLElement) {
 		allstring = append(allstring, e.Text)
 	})
 	c.Visit("https://finance.yahoo.com/quote/CL%3DF?p=CL%3DF")

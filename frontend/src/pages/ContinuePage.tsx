@@ -5,8 +5,8 @@ import page1 from '../assets/images/Image1.jpg';
 import page2 from '../assets/images/Image2.jpg';
 const ScrollImagePage: React.FC = () => {
   const { ref: secondImageRef, inView: secondImageInView } = useInView({
-    triggerOnce: false, // 只触发一次
-    threshold: 0.1, // 在10%的可见度时触发
+    triggerOnce: false, // only trigger once
+    threshold: 0.1, // 10% visibility to trigger
   });
 
   return (

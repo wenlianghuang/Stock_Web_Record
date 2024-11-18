@@ -11,8 +11,8 @@ const ContactPage: React.FC = () => {
         { name: "Dow Jones Industrial Average", value: "21,638.09", change: "1000.01 (-4.43%)" },
         { name: "NASDAQ Composite", value: "17,402.81", change: "942.5 (-5.14%)" },
         { name: "S&P 500", value: "21,097.00", change: "429.00 (-1.99%)" },
-        { name: "Crude Oil", value: "76.13", change: "-141.30 (-3.09%)"}
-    ]);
+        { name: "Crude Oil", value: "76.13", change: "-141.30 (-3.09%)"},
+        { name: "PHLX Semiconductor", value: "1,800.00", change: "100.00 (5.88%)" },]);
     const handleToggle = () => {
         setStockState(!useStockState);   
     };

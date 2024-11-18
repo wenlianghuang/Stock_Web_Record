@@ -24,19 +24,19 @@ func Sox() {
 	var allstring []string
 
 	// 指數
-	c.OnHTML(".livePrice.yf-mgkamr > span", func(e *colly.HTMLElement) {
+	c.OnHTML(".livePrice.yf-1tejb6 > span", func(e *colly.HTMLElement) {
 		//println(e.Text)
 		text := e.Text
-		data[3]["value"] = text
+		data[4]["value"] = text
 	})
 	// 漲跌數字和比例
-	c.OnHTML(".priceChange.yf-mgkamr > span", func(e *colly.HTMLElement) {
+	c.OnHTML(".priceChange.yf-1tejb6 > span", func(e *colly.HTMLElement) {
 		allstring = append(allstring, e.Text)
 
 	})
 	c.Visit("https://finance.yahoo.com/quote/%5ESOX?p=^SOX")
-	data[3]["change"] = allstring[0] + " " + allstring[1]
-	print(data[3]["change"])
+	data[4]["change"] = allstring[0] + " " + allstring[1]
+	print(data[4]["change"])
 	updatedData, err := json.MarshalIndent(data, "", "")
 	if err != nil {
 		fmt.Println("Error marshlling JSON:", err)

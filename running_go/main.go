@@ -4,6 +4,7 @@ import (
 	CrudeOil "running_go/CrudOil"
 	DowJones "running_go/DOJ"
 	Nasdaq "running_go/NASDAQ"
+	Sox "running_go/SOX"
 	SandP500 "running_go/SandP500"
 )
 
@@ -15,6 +16,6 @@ func main() {
 	DowJones.Doj()
 	Nasdaq.NASDAQ()
 	CrudeOil.CrudeOil()
-	//Sox.Sox()
+	Sox.Sox()
 
 }

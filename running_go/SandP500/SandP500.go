@@ -23,12 +23,12 @@ func SandP500() {
 	c := colly.NewCollector()
 	var allstring []string
 	// 指數
-	c.OnHTML(".livePrice.yf-mgkamr > span", func(e *colly.HTMLElement) {
+	c.OnHTML(".livePrice.yf-1tejb6 > span", func(e *colly.HTMLElement) {
 		//println(e.Text)
 		text := e.Text
 		data[2]["value"] = text
 	})
-	c.OnHTML(".priceChange.yf-mgkamr > span", func(e *colly.HTMLElement) {
+	c.OnHTML(".priceChange.yf-1tejb6 > span", func(e *colly.HTMLElement) {
 		allstring = append(allstring, e.Text)
 	})
 	c.Visit("https://finance.yahoo.com/quote/%5EGSPC?p=^GSPC")
